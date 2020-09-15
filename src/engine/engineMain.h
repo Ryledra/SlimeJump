@@ -1,8 +1,8 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
-#include <GLFW/glfw3native.h>
+// #include <GLFW/glfw3native.h>
 
-#define GL_SILENCE_DEPRECATION
+// #define GL_SILENCE_DEPRECATION
 
 class Engine	{
 	public:
