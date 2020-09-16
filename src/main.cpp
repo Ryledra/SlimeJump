@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "engine/engineMain.h"
 #include "entity.h"
 #include "common/shader.hpp"
+#include "common/listDIR.h"
 
 int loop(Engine engine);
 void redraw(Engine engine);
@@ -17,7 +19,11 @@ int main()  {
     engine.createWindow();
 
     entities.push_back(Entity());
-    programID = LoadShaders("simpleVertexShader.glsl", "simpleFragmentShader.glsl");
+    // std::ifstream in("src/simpleVertexShader.glsl");
+    // std::string vertexSrc((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+    // std::cout << vertexSrc << std::endl;
+    // ListDIR().list_dir(".");
+    programID = LoadShaders("src/simpleVertexShader.glsl", "src/simpleFragmentShader.glsl");
 
     loop(engine);
     return 0;
