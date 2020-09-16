@@ -2,11 +2,13 @@
 #include <vector>
 #include "engine/engineMain.h"
 #include "entity.h"
+#include "common/shader.hpp"
 
 int loop(Engine engine);
 void redraw(Engine engine);
 
 std::vector<Entity> entities;
+GLuint programID;
 
 int main()  {
     const char* name = "SlimeJump";
@@ -15,6 +17,7 @@ int main()  {
     engine.createWindow();
 
     entities.push_back(Entity());
+    programID = LoadShaders("simpleVertexShader.glsl", "simpleFragmentShader.glsl");
 
     loop(engine);
     return 0;
@@ -32,7 +35,11 @@ int loop(Engine engine) {
 
 void redraw(Engine engine)   {
     /* Render here */
-    glClear(GL_COLOR_BUFFER_BIT);
+    // glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Use our shader
+    glUseProgram(programID);
 
     for(int i = 0; i < entities.size(); i++)    {
         // std::cout << "printing entity " << i << std::endl;

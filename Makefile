@@ -12,7 +12,7 @@ TARGET := bin/SlimeJump
  
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) $(BUILDDIR)/glad.o
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) $(BUILDDIR)/glad/glad.o
 CFLAGS := -g # -Wall
 LIB := -lglfw -framework OpenGL # -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
 INC := -I include
@@ -23,10 +23,12 @@ $(TARGET): $(OBJECTS)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p ${BUILDDIR}
+	@mkdir -p ${BUILDDIR}/glad
 	@echo " gcc $(CFLAGS) $(INC) -c -o $@ $<"; gcc $(CFLAGS) $(INC) -c -o $@ $<
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@mkdir -p ${BUILDDIR}
+	@mkdir -p ${BUILDDIR} 
+	@mkdir -p ${BUILDDIR}/common
 	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
