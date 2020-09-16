@@ -7,15 +7,14 @@
 class Engine	{
 	private:
 		const char* window_name;
+		GLFWwindow* window;
 
 	public:
-		Engine(char* name)	{
+		Engine(const char* name)	{
 			window_name = name;
 		}
 
 		int createWindow()	{
-			GLFWwindow* window;
-
 			/* Initialize the library */
 			if (!glfwInit())
 				return -1;
@@ -32,17 +31,10 @@ class Engine	{
 			/* Initialise glad */
 			gladLoadGL();
 
-			/* Loop until the user closes the window */
-			while (!glfwWindowShouldClose(window))
-			{
-				/* Render here */
-				glClear(GL_COLOR_BUFFER_BIT);
-				/* Swap front and back buffers */
-				glfwSwapBuffers(window);
-				/* Poll for and process events */
-				glfwPollEvents();
-			}
-			glfwTerminate();
 			return 0;
+		}
+
+		GLFWwindow* getWindow()	{
+			return window;
 		}
 };
