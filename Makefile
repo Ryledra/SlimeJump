@@ -12,18 +12,18 @@ TARGET := bin/SlimeJump
  
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) 
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) $(BUILDDIR)/glad.o
 CFLAGS := -g # -Wall
 LIB := -lglfw -framework OpenGL # -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
 INC := -I include
 
-$(TARGET): $(OBJECTS) $(BUILDDIR)/glad.o
+$(TARGET): $(OBJECTS)
 	@echo " Linking..."
 	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
-$(BUILDDIR)/glad.o: $(SRCDIR)/glad.c
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p ${BUILDDIR}
-	@echo "building glad.o..."; gcc -o build/glad.o src/glad.c -g -I include -c
+	@echo " gcc $(CFLAGS) $(INC) -c -o $@ $<"; gcc $(CFLAGS) $(INC) -c -o $@ $<
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p ${BUILDDIR}
