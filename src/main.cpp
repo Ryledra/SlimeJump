@@ -23,6 +23,8 @@ int main()  {
     // std::string vertexSrc((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     // std::cout << vertexSrc << std::endl;
     // ListDIR().list_dir(".");
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+    
     programID = LoadShaders("src/simpleVertexShader.glsl", "src/simpleFragmentShader.glsl");
 
     loop(engine);
