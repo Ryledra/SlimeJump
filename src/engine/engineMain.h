@@ -39,10 +39,22 @@ class Engine	{
 			/* Make the window's context current */
 			glfwMakeContextCurrent(window);
 
+			if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+				std::cout << "Failed to initialize OpenGL context" << std::endl;
+				return -1;
+			}
+
+			glViewport(0, 0, 800, 600);
+
 			/* Initialise glad */
 			gladLoadGL();
 
 			return 0;
+		}
+
+		void processInput()	{
+			if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+				glfwSetWindowShouldClose(window, true);
 		}
 
 		GLFWwindow* getWindow()	{

@@ -24,7 +24,7 @@ int main()  {
     // std::cout << vertexSrc << std::endl;
     // ListDIR().list_dir(".");
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-    
+
     programID = LoadShaders("src/simpleVertexShader.glsl", "src/simpleFragmentShader.glsl");
 
     loop(engine);
@@ -35,6 +35,7 @@ int loop(Engine engine) {
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(engine.getWindow()))
     {
+        engine.processInput();
         redraw(engine);
     }
     glfwTerminate();
