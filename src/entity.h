@@ -31,11 +31,11 @@ class Entity	{
 	public:
 		Entity()	{
 			// Generate 1 buffer, put the resulting identifier in vertexbuffer
-			glGenBuffers(1, &vertexbuffer);
+			// glGenBuffers(1, &vertexbuffer);
 			// The following commands will talk about our 'vertexbuffer' buffer
-			glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+			// glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 			// Give our vertices to OpenGL.
-			glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+			// glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 			genVAO();
 		}
 
@@ -45,7 +45,7 @@ class Entity	{
 			glBindVertexArray(vao);
 			// Draw the triangle !
 			glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
-			glDisableVertexAttribArray(0);
+			// glDisableVertexAttribArray(0);
 			// std::cout << "here" << std::endl;
 		}
 };
