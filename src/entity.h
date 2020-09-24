@@ -30,8 +30,6 @@ class Entity	{
 
 	public:
 		Entity()	{
-			//g_vertex_buffer_data = vertex_buffer_data;
-
 			// Generate 1 buffer, put the resulting identifier in vertexbuffer
 			glGenBuffers(1, &vertexbuffer);
 			// The following commands will talk about our 'vertexbuffer' buffer
