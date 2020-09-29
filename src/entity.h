@@ -8,14 +8,14 @@ class Entity	{
 			0.0f,  1.0f, 0.0f,
 		};
 		// This will identify our vertex buffer
-		GLuint vertexbuffer;
+		GLuint vbo;
 		GLuint vao;
 
 		void genVAO() {
 			GLfloat * beg = std::begin(g_vertex_buffer_data);
 			GLfloat * end = std::end(g_vertex_buffer_data);
 
-			GLuint vbo = 0;
+			// GLuint vbo = 0;
 			glGenBuffers(1, &vbo);
 			glBindBuffer(GL_ARRAY_BUFFER, vbo);
 			glBufferData(GL_ARRAY_BUFFER, (end - beg) * sizeof(GLfloat), beg, GL_STATIC_DRAW);

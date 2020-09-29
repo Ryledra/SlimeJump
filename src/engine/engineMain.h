@@ -44,7 +44,7 @@ class Engine	{
 				return -1;
 			}
 
-			glViewport(0, 0, 800, 600);
+			glViewport(0, 0, window_size[0], window_size[1]);
 
 			/* Initialise glad */
 			gladLoadGL();

@@ -38,6 +38,7 @@ int loop(Engine engine) {
         engine.processInput();
         redraw(engine);
     }
+    std::cout << "Closing window" << std::endl;
     glfwTerminate();
     return 0;
 }
