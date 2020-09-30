@@ -2,9 +2,10 @@
 #include <vector>
 #include <fstream>
 #include "engine/engineMain.h"
+#include "engine/engineMaths.h"
 #include "entity.h"
 #include "common/shader.hpp"
-#include "common/listDIR.h"
+// #include "common/listDIR.h"
 
 int loop(Engine engine);
 void redraw(Engine engine);
@@ -18,7 +19,14 @@ int main()  {
     Engine engine = Engine(name, window_size);
     engine.createWindow();
 
-    entities.push_back(Entity());
+    GLfloat triPos[3] = {0.0f,0.0f,0.0f};
+    GLfloat triVel[3] = {0.0f,-0.01f,0.0f};
+    GLfloat triShape[9] = {
+        0.0f, 0.0f, 0.0f,
+        0.5f, 0.0f, 0.0f,
+        0.250f, 0.5f, 0.0f
+    };
+    entities.push_back(Entity(triPos, triVel, triShape, 9));
     // std::ifstream in("src/simpleVertexShader.glsl");
     // std::string vertexSrc((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     // std::cout << vertexSrc << std::endl;

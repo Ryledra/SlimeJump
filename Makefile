@@ -28,7 +28,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p ${BUILDDIR} 
-	@mkdir -p ${BUILDDIR}/common
+	@mkdir -p ${BUILDDIR}/common ${BUILDDIR}/engine
 	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:

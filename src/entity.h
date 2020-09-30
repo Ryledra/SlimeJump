@@ -1,19 +1,26 @@
 #include <iostream>
+#include <vector>
+#include "engine/engineMaths.h"
 
 class Entity	{
 	private:
-		GLfloat g_vertex_buffer_data[9] = {
-			-1.0f, -1.0f, 0.0f,
-			1.0f, -1.0f, 0.0f,
-			0.0f,  1.0f, 0.0f,
-		};
+		GLfloat shape_data[9];
+
+		GLfloat entityPos[3];
+		GLfloat entityVel[3];
+
 		// This will identify our vertex buffer
 		GLuint vbo;
 		GLuint vao;
 
 		void genVAO() {
-			GLfloat * beg = std::begin(g_vertex_buffer_data);
-			GLfloat * end = std::end(g_vertex_buffer_data);
+			GLfloat vertex_buffer_data[sizeof(shape_data)/sizeof(shape_data[0])];
+			for(int i = 0; i < (sizeof(shape_data)/sizeof(shape_data[0])); i++)	{
+				vertex_buffer_data[i] = shape_data[i] + entityPos[i%3];
+			}
+
+			GLfloat * beg = std::begin(vertex_buffer_data);
+			GLfloat * end = std::end(vertex_buffer_data);
 
 			// GLuint vbo = 0;
 			glGenBuffers(1, &vbo);
@@ -28,24 +35,36 @@ class Entity	{
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 		};
 
-	public:
-		Entity()	{
-			// Generate 1 buffer, put the resulting identifier in vertexbuffer
-			// glGenBuffers(1, &vertexbuffer);
-			// The following commands will talk about our 'vertexbuffer' buffer
-			// glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-			// Give our vertices to OpenGL.
-			// glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-			genVAO();
+		void updatePosition()	{
+			GLfloat * newPos = addMatrix(entityPos, entityVel);
+			for(int i = 0; i < 3; i++)	{
+				entityPos[i] = * (newPos + i);
+				// std::cout << entityPos[i] << std::endl;
+			}
 		}
 
+	public:
+		Entity()	{};
+		Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size)	{
+			for(int i = 0; i < 3; i++)	{
+				entityPos[i] = initialPos[i];
+				entityVel[i] = initialVel[i];
+			}
+			for(int i = 0 ; i < shape_size; i++)	{
+				// [9] = {
+				// 	0.0f, 0.0f, 0.0f,
+				// 	0.5f, 0.0f, 0.0f,
+				// 	0.250f, 0.5f, 0.0f,
+				// };
+				shape_data[i] = shape[i];
+				// std::cout << i << ":" << shape_data[i] << std::endl;
+			}
+		};
+
 		void draw()	{
-			// 1st attribute buffer : vertices
-			// glEnableVertexAttribArray(0);
+			updatePosition();
+			genVAO();
 			glBindVertexArray(vao);
-			// Draw the triangle !
-			glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
-			// glDisableVertexAttribArray(0);
-			// std::cout << "here" << std::endl;
+			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
 };
