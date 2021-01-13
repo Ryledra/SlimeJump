@@ -20,7 +20,7 @@ int main()  {
     engine.createWindow();
 
     GLfloat triPos[3] = {0.0f,0.0f,0.0f};
-    GLfloat triVel[3] = {0.0f,-0.01f,0.0f};
+    GLfloat triVel[3] = {0.0f,-0.001f,0.0f};
     GLfloat triShape[9] = {
         0.0f, 0.0f, 0.0f,
         0.5f, 0.0f, 0.0f,
