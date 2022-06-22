@@ -51,6 +51,11 @@ int loop(Engine engine) {
     return 0;
 }
 
+void tick()
+{
+    // update state of all entities
+}
+
 void redraw(Engine engine)   {
     /* Render here */
     // glClear(GL_COLOR_BUFFER_BIT);

@@ -1,6 +1,5 @@
 # Ignore the build and lib dirs
 build
-lib/*
 run.sh
 
 # Ignore any executables
