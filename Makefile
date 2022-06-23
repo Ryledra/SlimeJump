@@ -4,7 +4,7 @@
 # TODO: Create window with OpenGL
 #
  
-CC := g++ # This is the main compiler
+CC := g++ -std=c++17 # This is the main compiler (g++ using c++17 standard)
 # CC := clang --analyze # and comment out the linker last line for sanity
 SRCDIR := src
 BUILDDIR := build

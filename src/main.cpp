@@ -14,7 +14,7 @@ std::vector<Entity> entities;
 GLuint programID;
 
 int main()  {
-    const char* name = "SlimeJump";
+    const char* name { "SlimeJump" };
     int window_size[2] = {640, 480};
     Engine engine = Engine(name, window_size);
     engine.createWindow();
@@ -64,7 +64,7 @@ void redraw(Engine engine)   {
     // Use our shader
     glUseProgram(programID);
 
-    for(int i = 0; i < entities.size(); i++)    {
+    for(int i { 0 }; i < entities.size(); ++i)    {
         // std::cout << "printing entity " << i << std::endl;
         entities[i].draw();
     }

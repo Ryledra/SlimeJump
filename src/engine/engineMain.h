@@ -7,7 +7,8 @@
 
 #define GL_SILENCE_DEPRECATION
 
-class Engine	{
+class Engine	
+{
 	private:
 		const char* window_name;
 		int window_size[2];
@@ -17,9 +18,7 @@ class Engine	{
 		Engine(const char* name, int size[2]);
 
 		int createWindow();
-
 		void processInput();
-
 		GLFWwindow* getWindow();
 };
 

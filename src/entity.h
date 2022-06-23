@@ -2,11 +2,12 @@
 #define ENTITY_H
 
 #include <iostream>
-#include <vector>
-#include "engine/engineMain.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "engine/engineMaths.h"
 
-class Entity	{
+class Entity	
+{
 	private:
 		GLfloat shape_data[9];
 
