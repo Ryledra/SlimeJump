@@ -2,7 +2,7 @@
 
  A 2D vertical jump platformer
 
- # dependencies
+ # Dependencies
 
  ## MacOS
     brew install glfw

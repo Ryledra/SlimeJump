@@ -1,3 +1,6 @@
+#ifndef ENGINE_MAIN_H
+#define ENGINE_MAIN_H
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -61,3 +64,5 @@ class Engine	{
 			return window;
 		}
 };
+
+#endif
