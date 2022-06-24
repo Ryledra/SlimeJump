@@ -7,12 +7,14 @@
  ## Common
 
    OpenGL
+
    C++ Compiler with compatibilty to C++17 Standard.
+   
    libglfw libraries for operating system need placing in the 'lib' directory (MacOS files in by default).
 
  ## MacOS
 
-    `brew install glfw`
+   `brew install glfw`
 
  # To Build
 
