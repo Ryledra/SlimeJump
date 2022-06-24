@@ -8,7 +8,9 @@ CC := g++ -std=c++17 # This is the main compiler (g++ using c++17 standard)
 # CC := clang --analyze # and comment out the linker last line for sanity
 SRCDIR := src
 BUILDDIR := build
-TARGET := bin/SlimeJump
+TARGETDIR := bin
+TARGET := ${TARGETDIR}/SlimeJump
+SHADERSDIR := ${TARGETDIR}/shaders/
  
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
@@ -18,6 +20,9 @@ LIB := -lglfw -framework OpenGL # -pthread -lmongoclient -L lib -lboost_thread-m
 INC := -I include
 
 $(TARGET): $(OBJECTS)
+	@echo " Moving shaders..."
+	@mkdir -p ${SHADERSDIR}
+	@cp shaders/* ${SHADERSDIR} 
 	@echo " Linking..."
 	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
@@ -33,7 +38,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 
 clean:
 	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+	@echo " $(RM) -r $(BUILDDIR) $(TARGETDIR)"; $(RM) -r $(BUILDDIR) $(TARGETDIR)
 
 # Tests
 tester:

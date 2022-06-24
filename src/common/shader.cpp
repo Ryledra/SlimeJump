@@ -10,13 +10,10 @@
 #include <string.h>
 
 #include <glad/glad.h>
-// #include <GL/glew.h>
 
 #include "shader.hpp"
-using namespace std;
 
-
-GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path)	{
+GLuint shader::LoadShaders(const char * vertex_file_path, const char * fragment_file_path)	{
 
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
