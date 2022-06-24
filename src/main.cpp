@@ -33,7 +33,7 @@ int main()  {
     // ListDIR().list_dir(".");
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-    programID = shader::LoadShaders("shaders/simpleVertexShader.glsl", "shaders/simpleFragmentShader.glsl");
+    programID = shader::loadShaders("shaders/simpleVertexShader.glsl", "shaders/simpleFragmentShader.glsl");
 
     loop(engine);
     return 0;
