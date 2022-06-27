@@ -4,15 +4,17 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "engine/engineMaths.h"
+#include "../engine/engineMaths.h"
 
 class Entity	
 {
 	private:
-		GLfloat shape_data[9];
 
 		GLfloat entityPos[3];
 		GLfloat entityVel[3];
+
+		GLfloat * p_shape_data {};
+		int shape_data_size {};
 
 		// This will identify our vertex buffer
 		GLuint vbo;

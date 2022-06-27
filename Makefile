@@ -33,7 +33,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p ${BUILDDIR} 
-	@mkdir -p ${BUILDDIR}/common ${BUILDDIR}/engine
+	@mkdir -p ${BUILDDIR}/common ${BUILDDIR}/engine ${BUILDDIR}/entities
 	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:

@@ -52,11 +52,11 @@ void shader::compileShader(GLuint * shaderID, std::string shaderCode, const char
 {
 	std::cout << "Compiling shader : " << shader_file_path << "\n";
 	char const * sourcePointer = shaderCode.c_str();
-	std::cout << *shaderID << '\n';
+	// std::cout << *shaderID << '\n';
 	glShaderSource(*shaderID, 1, &sourcePointer , NULL);
-	std::cout << *shaderID << '\n';
+	// std::cout << *shaderID << '\n';
 	glCompileShader(*shaderID);
-	std::cout << *shaderID << '\n';
+	// std::cout << *shaderID << '\n';
 }
 
 GLuint shader::loadShader(const int shaderType, const char * shader_file_path, int * InfoLogLength, GLint * Result)

@@ -2,13 +2,15 @@
 
 void Entity::genVAO() 
 {
-    GLfloat vertex_buffer_data[sizeof(shape_data)/sizeof(shape_data[0])];
-    for(int i {0}; i < (sizeof(shape_data)/sizeof(shape_data[0])); ++i)	{
-        vertex_buffer_data[i] = shape_data[i] + entityPos[i%3];
+    GLfloat* vertex_buffer_data = new GLfloat[shape_data_size];
+
+    for(int i {0}; i < shape_data_size; ++i)	
+    {
+        vertex_buffer_data[i] = *(p_shape_data + i) + entityPos[i%3];
     }
 
-    GLfloat * beg { std::begin(vertex_buffer_data) };
-    GLfloat * end { std::end(vertex_buffer_data) };
+    GLfloat * beg { vertex_buffer_data };
+    GLfloat * end { vertex_buffer_data + (shape_data_size - 1) };
 
     // GLuint vbo = 0;
     glGenBuffers(1, &vbo);
@@ -28,25 +30,19 @@ void Entity::updatePosition()
     GLfloat * newPos { engineMaths::addMatrix(entityPos, entityVel) };
     for(int i {0}; i < 3; ++i)	{
         entityPos[i] = * (newPos + i);
-        // std::cout << entityPos[i] << std::endl;
     }
 }
 
 Entity::Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size)	
 {
+    std::cout << "entity created\n";
     for(int i {0}; i < 3; ++i)	{
         entityPos[i] = initialPos[i];
         entityVel[i] = initialVel[i];
     }
-    for(int i = 0 ; i < shape_size; i++)	{
-        // [9] = {
-        // 	0.0f, 0.0f, 0.0f,
-        // 	0.5f, 0.0f, 0.0f,
-        // 	0.250f, 0.5f, 0.0f,
-        // };
-        shape_data[i] = shape[i];
-        // std::cout << i << ":" << shape_data[i] << std::endl;
-    }
+    p_shape_data = shape;
+    shape_data_size = shape_size;
+    // std::cout << shape_data << '\n';
 }
 
 void Entity::draw()	
@@ -54,5 +50,5 @@ void Entity::draw()
     updatePosition();
     genVAO();
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, shape_data_size/3);
 }

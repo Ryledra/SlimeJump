@@ -3,7 +3,7 @@
 #include <fstream>
 #include "engine/engineMain.h"
 #include "engine/engineMaths.h"
-#include "entity.h"
+#include "entities/entity.h"
 #include "common/shader.hpp"
 // #include "common/listDIR.h"
 
@@ -20,13 +20,17 @@ int main()  {
     engine.createWindow();
 
     GLfloat triPos[3] = {0.0f,0.0f,0.0f};
-    GLfloat triVel[3] = {0.0f,-0.001f,0.0f};
-    GLfloat triShape[9] = {
-        0.0f, 0.0f, 0.0f,
-        0.5f, 0.0f, 0.0f,
-        0.250f, 0.5f, 0.0f
+    GLfloat triVel[3] = {0.0f,-0.005f,0.0f};
+    GLfloat triShape[] = {
+    -0.5f, 0.5f, 0.0f, // top left point
+    0.5f, 0.5f, 0.0f, // top right point
+    0.5f, -0.5f, 0.0f, // bottom right point
+    
+    0.5f, -0.5f, 0.0f, // bottom right point
+    -0.5f, -0.5f, 0.0f, // bottom left point
+    -0.5f, 0.5f, 0.0f, // top left point
     };
-    entities.push_back(Entity(triPos, triVel, triShape, 9));
+    entities.push_back(Entity(triPos, triVel, triShape, 18));
     // std::ifstream in("src/simpleVertexShader.glsl");
     // std::string vertexSrc((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     // std::cout << vertexSrc << std::endl;
