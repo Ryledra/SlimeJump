@@ -1,10 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <iostream>
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include "../engine/engineMaths.h"
+#include "engine/engineMaths.h"
 
 class Entity	
 {

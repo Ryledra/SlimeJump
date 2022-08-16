@@ -1,6 +1,4 @@
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "engine/engineMaths.h"
 
 namespace engineMaths	
 {

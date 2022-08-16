@@ -52,7 +52,7 @@ void Entity::updatePosition()
 
 Entity::Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size, bool isPlayer)	
 {
-    std::cout << "entity created\n";
+    // std::cout << "entity created\n";
     for(int i {0}; i < 3; ++i)	{
         entityPos[i] = initialPos[i];
         entityVel[i] = initialVel[i];

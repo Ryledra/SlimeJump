@@ -1,7 +1,7 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
-#include "engine/engineMain.h"
+#include <glad/glad.h>
 
 namespace shader
 {
