@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-#include "common/shader.hpp"
-#include "common/time.hpp"
-#include "engine/engineMain.h"
-#include "entities/entity.h"
+#include "engineMain.h"
+#include "entity.h"
+#include "shader.hpp"
+#include "time.hpp"
 
 int loop(Engine * engine, GLuint programID);
 void tick();

@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <glad/glad.h>
-#include "engine/engineMaths.h"
+#include "engineMaths.h"
 
 class Entity	
 {

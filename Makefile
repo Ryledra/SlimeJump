@@ -17,7 +17,7 @@ SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o)) $(BUILDDIR)/glad/glad.o
 CFLAGS := -g # -Wall
 LIB := -lglfw -framework OpenGL # -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
-INC := -I include -I src
+INC := -I include -I src/include
 
 $(TARGET): $(OBJECTS)
 	@echo " Moving shaders..."
