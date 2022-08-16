@@ -1,3 +1,6 @@
+#ifndef LISTDIR_H
+#define LISTDIR_H
+
 #include <iostream>
 #include <dirent.h>
 #include <sys/types.h>
@@ -17,3 +20,5 @@ class ListDIR  {
          closedir(dir);
       }
 };
+
+#endif
