@@ -1,11 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include "engine/engineMain.h"
-#include "engine/engineMaths.h"
 #include "entities/entity.h"
 #include "common/shader.hpp"
-// #include "common/listDIR.h"
 
 int loop(Engine engine);
 void redraw(Engine engine);
@@ -19,8 +16,8 @@ int main()  {
     Engine engine = Engine(name, window_size);
     engine.createWindow();
 
-    GLfloat triPos[3] = {0.0f,0.0f,0.0f};
-    GLfloat triVel[3] = {0.0f,-0.005f,0.0f};
+    GLfloat triPos[3] = {0.0f, 0.0f, 0.0f};
+    GLfloat triVel[3] = {0.0f, 0.0f, 0.0f};
     GLfloat triShape[] = {
     -0.5f, 0.5f, 0.0f, // top left point
     0.5f, 0.5f, 0.0f, // top right point
@@ -30,13 +27,12 @@ int main()  {
     -0.5f, -0.5f, 0.0f, // bottom left point
     -0.5f, 0.5f, 0.0f, // top left point
     };
-    entities.push_back(Entity(triPos, triVel, triShape, 18));
-    // std::ifstream in("src/simpleVertexShader.glsl");
-    // std::string vertexSrc((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
-    // std::cout << vertexSrc << std::endl;
-    // ListDIR().list_dir(".");
+    entities.push_back(Entity(triPos, triVel, triShape, 18, true));
+    
+    // background colour
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
+    // load shaders
     programID = shader::loadShaders("shaders/simpleVertexShader.glsl", "shaders/simpleFragmentShader.glsl");
 
     loop(engine);

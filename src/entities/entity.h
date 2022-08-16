@@ -16,16 +16,19 @@ class Entity
 		GLfloat * p_shape_data {};
 		int shape_data_size {};
 
+		bool isPlayer {false};
+
 		// This will identify our vertex buffer
 		GLuint vbo;
 		GLuint vao;
 
 		void genVAO();
 		void updatePosition();
+		GLfloat* updateVelocity();
 
 	public:
 		Entity();
-		Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size);
+		Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size, bool isPlayer);
 		void draw();
 };
 

@@ -42,10 +42,21 @@ int Engine::createWindow()	{
 }
 
 void Engine::processInput()	{
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+
+    if(Engine::keyPressed(GLFW_KEY_ESCAPE))
         glfwSetWindowShouldClose(window, true);
 }
 
 GLFWwindow* Engine::getWindow()	{
     return window;
+}
+
+bool Engine::keyPressed(int gl_key_token)   {
+    if (glfwGetKey(window, gl_key_token) == GLFW_PRESS)
+        return true;
+    return false;
+}
+
+bool Engine::keyReleased(int gl_key_token){
+    return false;
 }

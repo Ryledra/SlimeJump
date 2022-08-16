@@ -20,6 +20,9 @@ class Engine
 		int createWindow();
 		void processInput();
 		GLFWwindow* getWindow();
+
+		bool keyPressed(int gl_key_token);
+		bool keyReleased(int gl_key_token);
 };
 
 #endif

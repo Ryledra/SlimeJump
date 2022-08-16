@@ -25,23 +25,41 @@ void Entity::genVAO()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 }
 
+GLfloat* Entity::updateVelocity()
+{
+    GLfloat newVel[] = {0.0f, -0.001f, 0.0f};
+    return newVel;
+}
+
 void Entity::updatePosition()	
 {
+    // only player will have a dynamic velocity, 
+    // non-player entities will have their display position updated in relation to the player
+    if (isPlayer)
+    {
+        GLfloat * newVel { Entity::updateVelocity() };
+        for(int i {0}; i < 3; ++i)
+            entityVel[i] = * (newVel + i);
+    }
+    // std::cout << "Vel: " << entityVel[0] << '\t' << entityVel[1] << '\t' << entityVel[2] << '\n'; 
+
     GLfloat * newPos { engineMaths::addMatrix(entityPos, entityVel) };
     for(int i {0}; i < 3; ++i)	{
         entityPos[i] = * (newPos + i);
     }
+    // std::cout << "Pos: " << entityPos[0] << '\t' << entityPos[1] << '\t' << entityPos[2] << '\n'; 
 }
 
-Entity::Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size)	
+Entity::Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size, bool isPlayer)	
 {
     std::cout << "entity created\n";
     for(int i {0}; i < 3; ++i)	{
         entityPos[i] = initialPos[i];
         entityVel[i] = initialVel[i];
     }
-    p_shape_data = shape;
-    shape_data_size = shape_size;
+    Entity::p_shape_data = shape;
+    Entity::shape_data_size = shape_size;
+    Entity::isPlayer = isPlayer;
     // std::cout << shape_data << '\n';
 }
 
