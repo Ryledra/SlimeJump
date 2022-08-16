@@ -1,6 +1,8 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
+#include "engine/engineMain.h"
+
 namespace shader
 {
     std::string readShaderCode(const char * shader_file_path);

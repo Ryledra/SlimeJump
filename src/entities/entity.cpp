@@ -65,7 +65,6 @@ Entity::Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], in
 
 void Entity::draw()	
 {
-    updatePosition();
     genVAO();
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, shape_data_size/3);

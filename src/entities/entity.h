@@ -23,13 +23,13 @@ class Entity
 		GLuint vao;
 
 		void genVAO();
-		void updatePosition();
 		GLfloat* updateVelocity();
 
 	public:
 		Entity();
 		Entity(GLfloat initialPos[3], GLfloat initialVel[3], GLfloat shape[], int shape_size, bool isPlayer);
 		void draw();
+		void updatePosition();
 };
 
 #endif
