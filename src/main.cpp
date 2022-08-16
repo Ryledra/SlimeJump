@@ -4,11 +4,10 @@
 #include "entities/entity.h"
 #include "common/shader.hpp"
 
-int loop(Engine engine);
-void redraw(Engine engine);
+int loop(Engine * engine, GLuint programID);
+void redraw(Engine * engine, GLuint programID);
 
 std::vector<Entity> entities;
-GLuint programID;
 
 int main()  {
     const char* name { "SlimeJump" };
@@ -33,18 +32,18 @@ int main()  {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
     // load shaders
-    programID = shader::loadShaders("shaders/simpleVertexShader.glsl", "shaders/simpleFragmentShader.glsl");
+    GLuint programID { shader::loadShaders("shaders/simpleVertexShader.glsl", "shaders/simpleFragmentShader.glsl") };
 
-    loop(engine);
+    loop(&engine, programID);
     return 0;
 }
 
-int loop(Engine engine) {
+int loop(Engine * engine, GLuint programID) {
     /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(engine.getWindow()))
+    while (!glfwWindowShouldClose((*engine).getWindow()))
     {
-        engine.processInput();
-        redraw(engine);
+        (*engine).processInput();
+        redraw(engine, programID);
     }
     std::cout << "Closing window" << std::endl;
     glfwTerminate();
@@ -56,7 +55,7 @@ void tick()
     // update state of all entities
 }
 
-void redraw(Engine engine)   {
+void redraw(Engine * engine, GLuint programID)   {
     /* Render here */
     // glClear(GL_COLOR_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -70,7 +69,7 @@ void redraw(Engine engine)   {
     }
 
     /* Swap front and back buffers */
-    glfwSwapBuffers(engine.getWindow());
+    glfwSwapBuffers((*engine).getWindow());
     /* Poll for and process events */
     glfwPollEvents();
 }
