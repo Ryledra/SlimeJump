@@ -29,7 +29,7 @@ int Engine::createWindow()	{
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-        std::cout << "Failed to initialize OpenGL context" << std::endl;
+        std::cout << "Failed to initialize OpenGL context\n";
         return -1;
     }
 
