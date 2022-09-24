@@ -4,17 +4,11 @@
 
  # Dependencies
 
- ## Common
-
-   OpenGL
-
    C++ Compiler with compatibilty to C++17 Standard.
-   
-   libglfw libraries for operating system need placing in the 'lib' directory (MacOS files in by default).
 
- ## MacOS
+   GLFW installed.
 
-   `brew install glfw`
+   The correct verion of libglfw.dylib for your system (OS & CPU architecture) must be within the build environment library path. See https://github.com/glfw/glfw for details. lib/libglfw_installation is a bash script that will download, compile, extract and cleanup, a valid copy of these files for MacOS 12.6 onwards; use `echo export LIBRARY_PATH=$LIBRARY_PATH:${PWD} >> ~/.zprofile` to add location to build environment path.
 
  # To Build
 
