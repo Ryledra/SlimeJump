@@ -1,17 +1,24 @@
 #! /bin/bash
+# based on information from https://gist.github.com/vaiorabbit/6204931
 
-# https://gist.github.com/vaiorabbit/6204931
-
+# define variables
 RELEASE="3.3.8"
 
+# download & unzip 
 curl -L https://github.com/glfw/glfw/releases/download/${RELEASE}/glfw-${RELEASE}.zip > glfw-${RELEASE}.zip
 unzip glfw-${RELEASE}.zip
+
+# compile
 cd glfw-${RELEASE}/
 mkdir build
 cd build
 export MACOSX_DEPLOYMENT_TARGET=12.6
 cmake -D CMAKE_BUILD_TYPE=Release -D GLFW_NATIVE_API=1 -D CMAKE_OSX_ARCHITECTURES="x86_64;arm64" -D BUILD_SHARED_LIBS=ON -D CMAKE_C_COMPILER=clang ../
 make
+
+# copy out
 cp src/libglfw.* ../../
+
+# clean up
 cd ../..
 rm -r glfw-${RELEASE} glfw-${RELEASE}.zip
